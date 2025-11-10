@@ -1,0 +1,27 @@
+if (hearts < 3) hearts++;
+            heartsEl.textContent = hearts;
+            score += 10;
+            scoreEl.textContent = score;
+            heart.x = -100; // Xóa tim sau khi ăn
+        }
+    });
+    
+    // Kiểm tra va chạm với mèo
+    if (Math.abs(mouseX - catX) < 40 && Math.abs(200 - catY) < 40) {
+        hearts--;
+        heartsEl.textContent = hearts;
+        if (hearts <= 0) gameOver();
+    }
+}
+// Game over
+function gameOver() {
+    gameRunning = false;
+    ctx.fillStyle = 'black';
+    ctx.font = '30px Arial';
+    ctx.fillText('Game Over! Điểm: ' + score, 300, 200);
+    restartBtn.style.display = 'block';
+}
+// Vòng lặp game
+function gameLoop() {
+    update();
+    draw();
